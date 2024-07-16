@@ -1,9 +1,8 @@
-# nginx-proxy/nginx-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-proxy
-  namespace: nginx-proxy
+  namespace: nginx
 spec:
   selector:
     matchLabels:
@@ -22,8 +21,8 @@ spec:
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: nginx-config
+          # subPath: default.conf
       volumes:
       - name: nginx-config
         configMap:
           name: nginx-config
-
